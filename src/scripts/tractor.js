@@ -1,8 +1,7 @@
 //define and export a plantSeeds fn
 //-this must accept the year's planting plan as input
 
-import { addPlant } from "./field.js"
-import { usePlants } from "./field.js"
+import { addPlant, usePlants } from "./field.js"
 import { createAsparagus } from "./seeds/asparagus.js"
 import { createCorn } from "./seeds/corn.js"
 import { createPotato } from "./seeds/potato.js"
@@ -15,32 +14,72 @@ import { createWheat } from "./seeds/wheat.js"
 //the arrays themselves must also be iterated
 // invoke the matching seed fn to the food type
 
+// export const plantSeeds = (plantingPlan) => {
+//     for (const row of plantingPlan) { //grabs single array of arrays
+//         for (const plant of row) { //iterates plants of row 
+//             if (plant === "Potato") {
+//                 //createPotato()
+//                 addPlant(createPotato())
+//             } else if (plant === "Asparagus") {
+//                 //createAsparagus()
+//                 addPlant(createAsparagus())
+//             } else if (plant === "Corn") {
+//                 //createCorn ()
+//                 const newCorn = createCorn()
+//                 for (const corn of newCorn) {
+//                     addPlant(corn)
+//                 }
+//                 //addPlant(createCorn())
+//             } else if (plant === "Soybean") {
+//                 //createSoybean()
+//                 addPlant(createSoybean())
+//             } else if (plant === "Sunflower") {
+//                 //createSunflower()
+//                 addPlant(createSunflower())
+//             } else if (plant === "Wheat") {
+//                 // createWheat()
+//                 addPlant(createWheat())
+//             }
+//         }
+//     } return usePlants()
+// }
+
+
+
+
+
 export const plantSeeds = (plantingPlan) => {
-    for (const row of plantingPlan) { //grabs single array of arrays
-        for (const plant of row) { //iterates plants of row 
-            if (plant === "Potato") {
-                //createPotato()
+//REFACTORED CODE ** works
+    const mappedPlan = plantingPlan.map(row => { 
+        row.map(plant => {
+            (plant === "Potato") ?  //could this be a .filter.. 
                 addPlant(createPotato())
-            } else if (plant === "Asparagus") {
-                //createAsparagus()
+
+            : (plant === "Asparagus") ? 
                 addPlant(createAsparagus())
-            } else if (plant === "Corn") {
-                //createCorn ()
-                const newCorn = createCorn()
-                for (const corn of newCorn) {
-                    addPlant(corn)
-                }
-                //addPlant(createCorn())
-            } else if (plant === "Soybean") {
-                //createSoybean()
+
+            : (plant === "Corn") ? ""
+            // const newCorn = createCorn()
+            //     for (const corn of newCorn) {
+            //         addPlant(corn)
+            //     }
+
+            : (plant === "Soybean") ?
                 addPlant(createSoybean())
-            } else if (plant === "Sunflower") {
-                //createSunflower()
+
+            : (plant === "Sunflower") ?
                 addPlant(createSunflower())
-            } else if (plant === "Wheat") {
-                // createWheat()
+
+            : (plant === "Wheat") ?
                 addPlant(createWheat())
-            }
+                : ""
+        })
         }
-    } return usePlants()
+    ) 
+    return usePlants()
 }
+        
+
+    
+
+// condition ? if true : if false
