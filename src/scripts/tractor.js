@@ -49,37 +49,26 @@ import { createWheat } from "./seeds/wheat.js"
 
 
 export const plantSeeds = (plantingPlan) => {
-//REFACTORED CODE ** works
-    const mappedPlan = plantingPlan.map(row => { 
+    plantingPlan.map(row => {
         row.map(plant => {
-            (plant === "Potato") ?  //could this be a .filter.. 
+            if (plant === "Potato") {
                 addPlant(createPotato())
-
-            : (plant === "Asparagus") ? 
+            }
+            else if (plant === "Asparagus") {
                 addPlant(createAsparagus())
-
-            : (plant === "Corn") ? ""
-            // const newCorn = createCorn()
-            //     for (const corn of newCorn) {
-            //         addPlant(corn)
-            //     }
-
-            : (plant === "Soybean") ?
+            }
+            else if (plant === "Corn") {
+                addPlant(createCorn())
+            }
+            else if (plant === "Soybean") {
                 addPlant(createSoybean())
-
-            : (plant === "Sunflower") ?
+            }
+            else if (plant === "Sunflower") {
                 addPlant(createSunflower())
-
-            : (plant === "Wheat") ?
+            }
+            else if (plant === "Wheat") {
                 addPlant(createWheat())
-                : ""
+            }
         })
-        }
-    ) 
-    return usePlants()
+    })
 }
-        
-
-    
-
-// condition ? if true : if false
